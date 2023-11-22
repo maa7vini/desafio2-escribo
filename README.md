@@ -28,3 +28,10 @@ O projeto é uma API RESTful que permite você cadastrar, fazer autenticação d
         "nome": ""
       }
 
+
+  ## 🛠 Tecnologias<p id="-tecnologias"></p>
+
+  -   **[Express](https://expressjs.com/pt-br/)**
+  -   **[JWT](https://jwt.io/)**
+  -   **[BCRYPT](https://www.npmjs.com/package/bcrypt)**
+
