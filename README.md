@@ -32,6 +32,6 @@ O projeto é uma API RESTful que permite você cadastrar, fazer autenticação d
   ## 🛠 Tecnologias<p id="-tecnologias"></p>
 
   -   **[Express](https://expressjs.com/pt-br/)**
-  -   **[JWT](https://jwt.io/)**
-  -   **[BCRYPT](https://www.npmjs.com/package/bcrypt)**
+  -   **[Jwt](https://jwt.io/)**
+  -   **[Bcrypt](https://www.npmjs.com/package/bcrypt)**
 
