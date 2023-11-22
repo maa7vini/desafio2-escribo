@@ -8,7 +8,7 @@ export async function getAllUsers() {
         const users = await Users.find()
         return users
     } catch(err) {
-        throw new Error(err)
+        return err
     }
 }
 
@@ -20,7 +20,7 @@ export async function saveUser(payload) {
         
             payload.senha = senhaHash
 
-            const diaAtual = new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
+            const diaAtual = new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear()
             const newPayload = {
                 ...payload,
                 criadoEm: diaAtual,
@@ -31,7 +31,7 @@ export async function saveUser(payload) {
             return newUser
         }
 
-        throw new Error({"Erro": "O usuário que sera cadastrado não foi informado!"})
+        return {"Erro": "O usuário que sera cadastrado não foi informado!"}
 
     } catch(err) {
         return err
@@ -52,7 +52,7 @@ export async function userLogin(email, senha) {
 
         if(checkSenha) {
 
-            const diaAtual = new Date().getDate() + "/" + new Date().getMonth() + "/" + new Date().getFullYear()
+            const diaAtual = new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear()
 
             await Users.findOneAndUpdate({_id: user._id}, {ultimoLogin: diaAtual})
 
@@ -76,6 +76,14 @@ export async function userLogin(email, senha) {
     }
 }
 
-export async function getByID(id) {
+export async function getUserByNameOrEmail(name) {
+    try {
+        const response = await Users.findOne({nome: name})
 
+        return response 
+         
+    } catch(err) {
+        console.error(err)
+        return {"mensagem": err}
+    }
 }

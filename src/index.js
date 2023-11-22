@@ -3,6 +3,8 @@ import express from 'express'
 import routes from './routes.js'
 import connectUsers from './database/dataBase.js'
 
+export const SECRET = "KSDJAKDJ339492MDKMDF37"
+
 const app = express()
 
 app.use(express.json())

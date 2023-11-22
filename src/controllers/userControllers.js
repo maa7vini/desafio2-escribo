@@ -1,4 +1,5 @@
-import { getAllUsers, saveUser, userLogin, verifyEmailUser } from "../services/userService.js"
+import { SECRET } from "../index.js"
+import { getAllUsers, getUserByNameOrEmail, saveUser, userLogin, verifyEmailUser } from "../services/userService.js"
 
 import jwt from 'jsonwebtoken'
 
@@ -19,6 +20,7 @@ export async function getUsers(req, res){
 
         return res.status(200).json(newResults)
     } catch(err) {
+        console.error(err)
         return res.status(400).send(err)
     }
 }
@@ -45,7 +47,7 @@ export async function addUser(req, res){
 
         return res.status(201).json(response)
     } catch(err){
-        console.log(err)
+        console.error(err)
         return res.status(400).send(err)
     }
 }
@@ -55,15 +57,16 @@ export async function authUser(req, res) {
         const { email, senha } = req.body
         const result = await userLogin(email, senha)
 
-        const secret = "KSDJAKDJ339492MDKMDF37"
-
         if(result.status === "OK") {
 
             const token = jwt.sign(
                 {
                   id: result.user._id,
                 },
-                secret
+                SECRET,
+                {
+                    expiresIn: "30m"
+                }
             );
 
             const response = {
@@ -79,11 +82,34 @@ export async function authUser(req, res) {
             return res.status(401).json({"mensagem": "Usuário e/ou senha inválidos!"})
         }
     } catch(err) {
-        console.log(err)
-        return res.status(400).json(err)
+        console.error(err)
+        return res.status(400).send(err)
     }
 }
 
-export async function getUserByID(req, res) {
-    
+export async function getUser(req, res) {
+    try {
+        const { nome } = req.body
+
+        if(!nome) {
+            return res.status(400).json({"mensagem": "O nome precisa ser informado!"})
+        }
+
+        const result = await getUserByNameOrEmail(nome)
+
+        if(result !== null) {
+
+            if(result.mensagem) {
+                return res.status(400).json(result)
+            }
+
+            return res.status(200).json(result)
+        } else {
+            return res.status(404).json({"mensagem": "Usuário não encontrado!"})
+        }
+
+    } catch(err) {
+        console.error(err)
+        return res.status(400).send(err)
+    }
 }
