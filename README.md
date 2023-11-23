@@ -6,7 +6,7 @@ O projeto é uma API RESTful que permite você cadastrar, fazer autenticação d
 
 #### 🧭 Rodando a api
 
-+ Para cadastrar um novo usuário
++ Para cadastrar um novo usuário (POST)
 + 
       {
         "nome": "",
@@ -15,14 +15,14 @@ O projeto é uma API RESTful que permite você cadastrar, fazer autenticação d
         "telefones": [{"numero": "", "ddd": ""}]
       }
 
-+ Para fazer login de um usuário
++ Para fazer login de um usuário (POST)
 + 
       {
         "email": "",
         "senha": ""
       }
 
-+ Para fazer pesquisar um usuário
++ Para fazer pesquisar um usuário (GET)
 + 
       {
         "nome": ""
