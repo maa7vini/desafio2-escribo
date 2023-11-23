@@ -22,7 +22,7 @@ O projeto é uma API RESTful que permite você cadastrar, fazer autenticação d
         "senha": ""
       }
 
-+ Para fazer pesquisar um usuário (GET)
++ Para pesquisar um usuário (GET)
 + 
       {
         "nome": ""
