@@ -12,14 +12,14 @@ O projeto é uma API RESTful que permite você cadastrar, fazer autenticação d
         "nome": "",
         "email": "",
         "senha" : "",
-        "telefones": [{"numeros": "", "ddd": ""}]
+        "telefones": [{"numero": "", "ddd": ""}]
       }
 
 + Para fazer login de um usuário
 + 
       {
-        "nome": "",
-        "email": ""
+        "email": "",
+        "senha": ""
       }
 
 + Para fazer pesquisar um usuário
